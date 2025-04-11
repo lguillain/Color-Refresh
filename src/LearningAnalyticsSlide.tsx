@@ -26,7 +26,7 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
     { name: "Present Tense Conjugation", percentage: 90, color: primary },
     { name: "Basic Sentence Structure", percentage: 85, color: secondary },
     { name: "Definite and Indefinite Articles", percentage: 75, color: tertiary },
-    { name: "Basic Adjective Endings", percentage: 70, color: secondary },
+    { name: "Basic Adjective Endings", percentage: 70, color: primary },
   ];
 
   const timeData: TimeData[] = [
@@ -105,9 +105,9 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
             <div key={index}>
               <div className="flex justify-between text-sm mb-1">
                 <span style={{ color: text.primary }}>{skill.name}</span>
-                <span style={{ color: text.secondary }}>{skill.percentage}%</span>
+                <span style={{ color: skill.color }}>{skill.percentage}%</span>
               </div>
-              <Progress value={skill.percentage} style={{ "--progress-background": primary }} />
+              <Progress value={skill.percentage} style={{ "--progress-background": skill.color }} />
             </div>
           ))}
         </div>
