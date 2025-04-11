@@ -15,7 +15,7 @@ interface QAItem {
 }
 
 const QASlide = ({ selectedPalette }: QASlideProps) => {
-  const { background, text, border, shadow, primary } = selectedPalette.colors;
+  const { background, text, border, shadow, primary, status } = selectedPalette.colors;
 
   const qaItems: QAItem[] = [
     {
@@ -179,17 +179,17 @@ const QASlide = ({ selectedPalette }: QASlideProps) => {
                       <span style={{ color: text.muted }}>View content</span>
                     </button>
                     <div className="flex items-center space-x-4">
-                      <button className="flex items-center space-x-2 px-3 py-1 rounded text-white" style={{ backgroundColor: '#22C55E' }}>
+                      <button className="flex items-center space-x-2 px-3 py-1 rounded text-white" style={{ backgroundColor: status.success }}>
                         <span>{item.stats.correct}</span>
                       </button>
-                      <button className="flex items-center space-x-2 px-3 py-1 rounded text-white" style={{ backgroundColor: '#EF4444' }}>
+                      <button className="flex items-center space-x-2 px-3 py-1 rounded text-white" style={{ backgroundColor: status.error }}>
                         <span>{item.stats.incorrect}</span>
                       </button>
                     </div>
-                    <button className="px-3 py-1 rounded text-white" style={{ backgroundColor: '#22C55E' }}>
+                    <button className="px-3 py-1 rounded text-white" style={{ backgroundColor: status.success }}>
                       Correct
                     </button>
-                    <button className="px-3 py-1 rounded text-white" style={{ backgroundColor: '#EF4444' }}>
+                    <button className="px-3 py-1 rounded text-white" style={{ backgroundColor: status.error }}>
                       Incorrect
                     </button>
                   </div>

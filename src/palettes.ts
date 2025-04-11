@@ -28,6 +28,33 @@ export interface ExtendedColorPalette {
 
 export const palettes: ExtendedColorPalette[] = [
   {
+    title: "Taskbase",
+    colors: {
+      primary: "#6265C9", // The darker purple used in ARR graph
+      secondary: "#A5F4D9", // Mint green used in pipeline chart
+      tertiary: "#8182D8", // Lighter purple color in the charts
+      background: {
+        main: "#F0F1FB", // Light lavender background 
+        light: "#FFFFFF", // White background
+        card: "#FFFFFF", // White card background
+        hover: "#E6E7FA" // Slightly darker than main background
+      },
+      text: {
+        primary: "#1A1A2E", // Dark text color
+        secondary: "#4B4B66", // Medium text color
+        muted: "#6E7191" // Light text color
+      },
+      status: {
+        success: "#22C55E", // Standard green for success
+        error: "#EF4444", // Standard red for error
+        warning: "#F59E0B", // Standard amber for warning
+        info: "#3B82F6" // Standard blue for info
+      },
+      border: "#E2E8F0", // Light gray border
+      shadow: "rgba(98, 101, 201, 0.12)" // Shadow based on primary color
+    }
+  },
+  {
     title: "Violet Venture",
     colors: {
       primary: "#6B4BFF",
@@ -112,54 +139,27 @@ export const palettes: ExtendedColorPalette[] = [
     title: "Blurple Bold",
     colors: {
       primary: "#635BFF",
-      secondary: "#38BDF8",
-      tertiary: "#A78BFA",
+      secondary: "#00B8D9",
+      tertiary: "#9F7AEA",
       background: {
         main: "#F6F8FD",
         light: "#FFFFFF",
         card: "#FFFFFF",
-        hover: "#EEEEFF"
+        hover: "#EEF1FF"
       },
       text: {
-        primary: "#18181B",
-        secondary: "#3F3F46",
-        muted: "#71717A"
+        primary: "#1A1B3C",
+        secondary: "#4A4B6A",
+        muted: "#717190"
       },
       status: {
-        success: "#15803D",
-        error: "#B91C1C",
-        warning: "#B45309",
-        info: "#1D4ED8"
+        success: "#36B37E",
+        error: "#E5484D",
+        warning: "#FFAB00",
+        info: "#4C9AFF"
       },
-      border: "#E4E4E7",
+      border: "#E6E8F0",
       shadow: "rgba(99, 91, 255, 0.12)"
-    }
-  },
-  {
-    title: "Taskbase",
-    colors: {
-      primary: "#6265C9", // The darker purple used in ARR graph
-      secondary: "#A5F4D9", // Mint green used in pipeline chart
-      tertiary: "#8182D8", // Lighter purple color in the charts
-      background: {
-        main: "#F0F1FB", // Light lavender background 
-        light: "#FFFFFF", // White background
-        card: "#FFFFFF", // White card background
-        hover: "#E6E7FA" // Slightly darker than main background
-      },
-      text: {
-        primary: "#1A1A2E", // Dark text color
-        secondary: "#4B4B66", // Medium text color
-        muted: "#6E7191" // Light text color
-      },
-      status: {
-        success: "#22C55E", // Standard green for success
-        error: "#EF4444", // Standard red for error
-        warning: "#F59E0B", // Standard amber for warning
-        info: "#3B82F6" // Standard blue for info
-      },
-      border: "#E2E8F0", // Light gray border
-      shadow: "rgba(98, 101, 201, 0.12)" // Shadow based on primary color
     }
   }
 ]; 
