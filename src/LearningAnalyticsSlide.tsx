@@ -1,7 +1,10 @@
 import React from 'react';
 import { ExtendedColorPalette } from './palettes';
 import { Progress } from "./components/ui/progress";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  PieChart, Pie, Cell, LineChart, Line, Legend
+} from 'recharts';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "./components/ui/select";
 
 interface LearningAnalyticsSlideProps {
@@ -17,26 +20,34 @@ interface SkillData {
 interface TimeData {
   date: string;
   minutes: number;
+  exercises: number;
 }
 
 const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps) => {
   const { primary, secondary, tertiary, background, text, border, shadow, status } = selectedPalette.colors;
 
   const skillsData: SkillData[] = [
-    { name: "Present Tense Conjugation", percentage: 90, color: primary },
-    { name: "Basic Sentence Structure", percentage: 85, color: secondary },
-    { name: "Definite and Indefinite Articles", percentage: 75, color: tertiary },
-    { name: "Basic Adjective Endings", percentage: 70, color: primary },
+    { name: "Present Tense", percentage: 90, color: primary },
+    { name: "Basic Structure", percentage: 85, color: secondary },
+    { name: "Articles", percentage: 75, color: tertiary },
+    { name: "Adjectives", percentage: 70, color: primary },
   ];
 
   const timeData: TimeData[] = [
-    { date: "Jan 1", minutes: 45 },
-    { date: "Jan 2", minutes: 40 },
-    { date: "Jan 3", minutes: 65 },
-    { date: "Jan 4", minutes: 70 },
-    { date: "Jan 5", minutes: 75 },
-    { date: "Jan 6", minutes: 60 },
-    { date: "Jan 7", minutes: 55 },
+    { date: "Jan 1", minutes: 45, exercises: 12 },
+    { date: "Jan 2", minutes: 40, exercises: 10 },
+    { date: "Jan 3", minutes: 65, exercises: 15 },
+    { date: "Jan 4", minutes: 70, exercises: 18 },
+    { date: "Jan 5", minutes: 75, exercises: 20 },
+    { date: "Jan 6", minutes: 60, exercises: 16 },
+    { date: "Jan 7", minutes: 55, exercises: 14 },
+  ];
+
+  const distributionData = [
+    { name: "Grammar", value: 34, color: primary },
+    { name: "Vocabulary", value: 28, color: secondary },
+    { name: "Listening", value: 22, color: tertiary },
+    { name: "Speaking", value: 16, color: status.info }
   ];
 
   return (
@@ -59,23 +70,33 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
         <p className="text-sm mb-6" style={{ color: text.muted }}>Goethe German A1 readiness score</p>
         
         <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="text-center p-3 rounded-lg" style={{ backgroundColor: background.hover }}>
+          <div className="text-center p-3 rounded-lg" style={{ 
+            backgroundColor: primary + '10',
+            border: `1px solid ${primary + '20'}`
+          }}>
             <div className="text-xl font-semibold" style={{ color: primary }}>32/36</div>
             <div className="text-xs" style={{ color: text.muted }}>tasks completed</div>
           </div>
-          <div className="text-center p-3 rounded-lg" style={{ backgroundColor: background.hover }}>
+          <div className="text-center p-3 rounded-lg" style={{ 
+            backgroundColor: secondary + '10',
+            border: `1px solid ${secondary + '20'}`
+          }}>
             <div className="text-xl font-semibold" style={{ color: secondary }}>56%</div>
             <div className="text-xs" style={{ color: text.muted }}>average correctness</div>
           </div>
-          <div className="text-center p-3 rounded-lg" style={{ backgroundColor: background.hover }}>
+          <div className="text-center p-3 rounded-lg" style={{ 
+            backgroundColor: tertiary + '10',
+            border: `1px solid ${tertiary + '20'}`
+          }}>
             <div className="text-xl font-semibold" style={{ color: tertiary }}>40</div>
             <div className="text-xs" style={{ color: text.muted }}>hours spent</div>
           </div>
         </div>
 
         <div className="text-sm p-3 rounded-lg" style={{ 
-          backgroundColor: background.hover,
-          color: text.muted 
+          backgroundColor: status.info + '10',
+          border: `1px solid ${status.info + '20'}`,
+          color: text.primary
         }}>
           Target completion date: June 21st, 2024
         </div>
@@ -89,34 +110,58 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg font-medium" style={{ color: text.primary }}>Proficiency</h2>
           <div className="flex space-x-4">
-            <div className="flex items-center">
-              <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: primary }}></div>
-              <span className="text-sm" style={{ color: text.muted }}>Grammar 34%</span>
-            </div>
-            <div className="flex items-center">
-              <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: secondary }}></div>
-              <span className="text-sm" style={{ color: text.muted }}>Vocabulary 28%</span>
-            </div>
+            {distributionData.map((item, index) => (
+              <div key={index} className="flex items-center">
+                <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: item.color }}></div>
+                <span className="text-sm" style={{ color: text.muted }}>{item.name} {item.value}%</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="space-y-4">
-          {skillsData.map((skill, index) => (
-            <div key={index}>
-              <div className="flex justify-between text-sm mb-1">
-                <span style={{ color: text.primary }}>{skill.name}</span>
-                <span style={{ color: skill.color }}>{skill.percentage}%</span>
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-4">
+            {skillsData.map((skill, index) => (
+              <div key={index}>
+                <div className="flex justify-between text-sm mb-1">
+                  <span style={{ color: text.primary }}>{skill.name}</span>
+                  <span style={{ color: skill.color }}>{skill.percentage}%</span>
+                </div>
+                <Progress value={skill.percentage} style={{ "--progress-background": skill.color }} />
               </div>
-              <Progress value={skill.percentage} style={{ "--progress-background": skill.color }} />
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={distributionData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {distributionData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
       {/* Time Spent Card */}
-      <div className="col-span-4 bg-white rounded-xl p-6 shadow-lg">
+      <div className="col-span-4 rounded-xl p-6" style={{ 
+        backgroundColor: background.card,
+        boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+      }}>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-lg font-medium" style={{ color: text.primary }}>Time Spent</h2>
+          <h2 className="text-lg font-medium" style={{ color: text.primary }}>Time & Progress</h2>
           <Select defaultValue="last7">
             <SelectTrigger className="w-32">
               <SelectValue placeholder="Select period" />
@@ -129,15 +174,57 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
           </Select>
         </div>
 
-        <ResponsiveContainer width="100%" height={200}>
-          <BarChart data={timeData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="minutes" fill={primary} radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="space-y-6">
+          <ResponsiveContainer width="100%" height={200}>
+            <LineChart data={timeData}>
+              <CartesianGrid strokeDasharray="3 3" stroke={border} />
+              <XAxis dataKey="date" stroke={text.muted} />
+              <YAxis stroke={text.muted} />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: background.card,
+                  border: `1px solid ${border}`,
+                  borderRadius: '8px'
+                }}
+                labelStyle={{ color: text.primary }}
+              />
+              <Legend />
+              <Line 
+                type="monotone" 
+                dataKey="minutes" 
+                name="Minutes" 
+                stroke={primary} 
+                strokeWidth={2}
+                dot={{ fill: primary }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="exercises" 
+                name="Exercises" 
+                stroke={secondary}
+                strokeWidth={2}
+                dot={{ fill: secondary }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+
+          <ResponsiveContainer width="100%" height={100}>
+            <BarChart data={timeData}>
+              <CartesianGrid strokeDasharray="3 3" stroke={border} />
+              <XAxis dataKey="date" stroke={text.muted} />
+              <YAxis stroke={text.muted} />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: background.card,
+                  border: `1px solid ${border}`,
+                  borderRadius: '8px'
+                }}
+                labelStyle={{ color: text.primary }}
+              />
+              <Bar dataKey="exercises" fill={tertiary} radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );
