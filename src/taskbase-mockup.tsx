@@ -105,15 +105,65 @@ const TaskbaseMockup = () => {
                     </div>
                   </div>
                   
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h1 className="text-white text-6xl font-bold mb-4">Taskbase</h1>
-                    <div className="flex items-center space-x-4">
-                      <div className="w-1 h-20 bg-white"></div>
-                      <div>
-                        <h2 className="text-4xl font-light text-white/90">
-                          KI Tutor Builder<br />
-                          für Lernexperten
-                        </h2>
+                  <div className="flex-1 flex justify-between items-center">
+                    <div className="flex flex-col justify-center">
+                      <h1 className="text-white text-6xl font-bold mb-4">Taskbase</h1>
+                      <div className="flex items-center space-x-4">
+                        <div className="w-1 h-20 bg-white"></div>
+                        <div>
+                          <h2 className="text-4xl font-light text-white/90">
+                            KI Tutor Builder<br />
+                            für Lernexperten
+                          </h2>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Mockup Elements */}
+                    <div className="relative w-1/2 h-full flex items-center justify-end">
+                      {/* Chat Interface Mockup */}
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 rounded-lg shadow-xl w-96 p-4 z-20"
+                        style={{ 
+                          backgroundColor: background.card,
+                          boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+                        }}>
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-sm font-medium" style={{ color: text.primary }}>Help a lost tourist</h3>
+                          <div className="flex space-x-2">
+                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: border }}></div>
+                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: border }}></div>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <div className="rounded-lg p-3 text-sm" style={{ backgroundColor: background.hover, color: text.primary }}>
+                            Hello! Can you please help me find the famous landmark, the Grossmünster?
+                          </div>
+                          <div className="rounded-lg p-3 text-sm ml-8" style={{ backgroundColor: primary + '10', color: text.primary }}>
+                            First, leave the station from the Bahnhofquai exit and walk...
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Flowchart Mockup */}
+                      <div className="absolute right-24 bottom-12 rounded-lg shadow-xl p-4 w-64 z-10"
+                        style={{ 
+                          backgroundColor: background.card,
+                          boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+                        }}>
+                        <div className="flex flex-col items-center space-y-4">
+                          <div className="w-32 h-10 rounded flex items-center justify-center text-sm" 
+                            style={{ backgroundColor: background.hover, color: text.primary }}>Begin</div>
+                          <div className="w-1 h-8" style={{ backgroundColor: border }}></div>
+                          <div className="w-32 h-10 rounded flex items-center justify-center text-sm"
+                            style={{ backgroundColor: background.hover, color: text.primary }}>Greeting</div>
+                          <div className="w-1 h-8" style={{ backgroundColor: border }}></div>
+                          <div className="flex space-x-8">
+                            <div className="w-24 h-10 rounded text-white flex items-center justify-center text-xs"
+                              style={{ backgroundColor: primary }}>Speaking</div>
+                            <div className="w-24 h-10 rounded text-white flex items-center justify-center text-xs"
+                              style={{ backgroundColor: secondary }}>Writing</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
