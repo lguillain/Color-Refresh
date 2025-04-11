@@ -82,33 +82,6 @@ export const palettes: ExtendedColorPalette[] = [
     }
   },
   {
-    title: "Ultraviolet",
-    colors: {
-      primary: "#7C3AED",
-      secondary: "#0EA5E9",
-      tertiary: "#C084FC",
-      background: {
-        main: "#FAF5FF",
-        light: "#FFFFFF",
-        card: "#FFFFFF",
-        hover: "#F3E8FF"
-      },
-      text: {
-        primary: "#1E1B4B",
-        secondary: "#4338CA",
-        muted: "#6D28D9"
-      },
-      status: {
-        success: "#16A34A",
-        error: "#DC2626",
-        warning: "#EA580C",
-        info: "#2563EB"
-      },
-      border: "#E9D5FF",
-      shadow: "rgba(124, 58, 237, 0.12)"
-    }
-  },
-  {
     title: "Cobalt Disruptor",
     colors: {
       primary: "#4338CA",
@@ -160,6 +133,33 @@ export const palettes: ExtendedColorPalette[] = [
       },
       border: "#E4E4E7",
       shadow: "rgba(99, 91, 255, 0.12)"
+    }
+  },
+  {
+    title: "Taskbase",
+    colors: {
+      primary: "#6265C9", // The darker purple used in ARR graph
+      secondary: "#A5F4D9", // Mint green used in pipeline chart
+      tertiary: "#8182D8", // Lighter purple color in the charts
+      background: {
+        main: "#F0F1FB", // Light lavender background 
+        light: "#FFFFFF", // White background
+        card: "#FFFFFF", // White card background
+        hover: "#E6E7FA" // Slightly darker than main background
+      },
+      text: {
+        primary: "#1A1A2E", // Dark text color
+        secondary: "#4B4B66", // Medium text color
+        muted: "#6E7191" // Light text color
+      },
+      status: {
+        success: "#22C55E", // Standard green for success
+        error: "#EF4444", // Standard red for error
+        warning: "#F59E0B", // Standard amber for warning
+        info: "#3B82F6" // Standard blue for info
+      },
+      border: "#E2E8F0", // Light gray border
+      shadow: "rgba(98, 101, 201, 0.12)" // Shadow based on primary color
     }
   }
 ]; 
