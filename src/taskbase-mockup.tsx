@@ -3,6 +3,7 @@ import { palettes, ExtendedColorPalette } from './palettes';
 import GrowthMetricsSlide from './GrowthMetricsSlide';
 import QASlide from './QASlide';
 import LearningAnalyticsSlide from './LearningAnalyticsSlide';
+import ComplexWebsiteSlide from './ComplexWebsiteSlide';
 
 interface ColorOptionProps {
   title: string;
@@ -71,7 +72,7 @@ const TaskbaseMockup = () => {
         <div className="flex-1 p-6">
           {/* Slide Navigation */}
           <div className="mb-4 flex space-x-2">
-            {['Cover', 'Growth Metrics', 'Q&A', 'Learning Analytics'].map((title, index) => (
+            {['Cover', 'Growth Metrics', 'Q&A', 'Learning Analytics', 'Complex Website'].map((title, index) => (
               <button
                 key={index}
                 className="px-4 py-2 rounded transition-colors text-sm"
@@ -177,6 +178,7 @@ const TaskbaseMockup = () => {
             {currentSlide === 1 && <GrowthMetricsSlide selectedPalette={selectedPalette} />}
             {currentSlide === 2 && <QASlide selectedPalette={selectedPalette} />}
             {currentSlide === 3 && <LearningAnalyticsSlide selectedPalette={selectedPalette} />}
+            {currentSlide === 4 && <ComplexWebsiteSlide selectedPalette={selectedPalette} />}
           </div>
         </div>
       </div>
