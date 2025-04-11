@@ -24,13 +24,18 @@ interface TimeData {
 }
 
 const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps) => {
-  const { primary, secondary, tertiary, background, text, border, shadow, status } = selectedPalette.colors;
+  const { primary, secondary, tertiary, background, text, border, shadow, status, graph } = selectedPalette.colors;
+
+  // Helper function to get graph colors with fallback
+  const getGraphColor = (type: 'categorical' | 'accent', index: number, fallback: string) => {
+    return graph?.[type]?.[index] || fallback;
+  };
 
   const skillsData: SkillData[] = [
-    { name: "Present Tense", percentage: 90, color: primary },
-    { name: "Basic Structure", percentage: 85, color: secondary },
-    { name: "Articles", percentage: 75, color: tertiary },
-    { name: "Adjectives", percentage: 70, color: primary },
+    { name: "Present Tense", percentage: 90, color: getGraphColor('categorical', 0, status.success) },
+    { name: "Basic Structure", percentage: 85, color: getGraphColor('categorical', 1, status.success) },
+    { name: "Articles", percentage: 75, color: getGraphColor('categorical', 2, status.warning) },
+    { name: "Adjectives", percentage: 70, color: getGraphColor('categorical', 3, status.warning) },
   ];
 
   const timeData: TimeData[] = [
@@ -44,11 +49,18 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
   ];
 
   const distributionData = [
-    { name: "Grammar", value: 34, color: primary },
-    { name: "Vocabulary", value: 28, color: secondary },
-    { name: "Listening", value: 22, color: tertiary },
-    { name: "Speaking", value: 16, color: status.info }
+    { name: "Grammar", value: 34, color: getGraphColor('categorical', 0, status.success) },
+    { name: "Vocabulary", value: 28, color: getGraphColor('categorical', 1, status.info) },
+    { name: "Listening", value: 22, color: getGraphColor('categorical', 2, status.warning) },
+    { name: "Speaking", value: 16, color: getGraphColor('categorical', 3, status.error) }
   ];
+
+  const correctnessStats = {
+    total: 120,
+    correct: 85,
+    incorrect: 35,
+    accuracy: 71
+  };
 
   return (
     <div className="w-full h-full p-8 grid grid-cols-12 gap-6" style={{ backgroundColor: background.main }}>
@@ -71,25 +83,25 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
         
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div className="text-center p-3 rounded-lg" style={{ 
-            backgroundColor: primary + '10',
-            border: `1px solid ${primary + '20'}`
+            backgroundColor: status.success + '10',
+            border: `1px solid ${status.success + '20'}`
           }}>
-            <div className="text-xl font-semibold" style={{ color: primary }}>32/36</div>
-            <div className="text-xs" style={{ color: text.muted }}>tasks completed</div>
+            <div className="text-xl font-semibold" style={{ color: status.success }}>{correctnessStats.correct}</div>
+            <div className="text-xs" style={{ color: text.muted }}>correct answers</div>
           </div>
           <div className="text-center p-3 rounded-lg" style={{ 
-            backgroundColor: secondary + '10',
-            border: `1px solid ${secondary + '20'}`
+            backgroundColor: status.error + '10',
+            border: `1px solid ${status.error + '20'}`
           }}>
-            <div className="text-xl font-semibold" style={{ color: secondary }}>56%</div>
-            <div className="text-xs" style={{ color: text.muted }}>average correctness</div>
+            <div className="text-xl font-semibold" style={{ color: status.error }}>{correctnessStats.incorrect}</div>
+            <div className="text-xs" style={{ color: text.muted }}>incorrect answers</div>
           </div>
           <div className="text-center p-3 rounded-lg" style={{ 
-            backgroundColor: tertiary + '10',
-            border: `1px solid ${tertiary + '20'}`
+            backgroundColor: status.info + '10',
+            border: `1px solid ${status.info + '20'}`
           }}>
-            <div className="text-xl font-semibold" style={{ color: tertiary }}>40</div>
-            <div className="text-xs" style={{ color: text.muted }}>hours spent</div>
+            <div className="text-xl font-semibold" style={{ color: status.info }}>{correctnessStats.accuracy}%</div>
+            <div className="text-xs" style={{ color: text.muted }}>accuracy rate</div>
           </div>
         </div>
 
@@ -193,17 +205,17 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
                 type="monotone" 
                 dataKey="minutes" 
                 name="Minutes" 
-                stroke={primary} 
+                stroke={getGraphColor('accent', 0, primary)} 
                 strokeWidth={2}
-                dot={{ fill: primary }}
+                dot={{ fill: getGraphColor('accent', 0, primary) }}
               />
               <Line 
                 type="monotone" 
                 dataKey="exercises" 
                 name="Exercises" 
-                stroke={secondary}
+                stroke={getGraphColor('accent', 1, secondary)}
                 strokeWidth={2}
-                dot={{ fill: secondary }}
+                dot={{ fill: getGraphColor('accent', 1, secondary) }}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -221,7 +233,7 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
                 }}
                 labelStyle={{ color: text.primary }}
               />
-              <Bar dataKey="exercises" fill={tertiary} radius={[4, 4, 0, 0]} />
+              <Bar dataKey="exercises" fill={getGraphColor('accent', 2, tertiary)} radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
