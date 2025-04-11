@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { palettes, ExtendedColorPalette } from './palettes';
 import GrowthMetricsSlide from './GrowthMetricsSlide';
 import QASlide from './QASlide';
+import LearningAnalyticsSlide from './LearningAnalyticsSlide';
 
 interface ColorOptionProps {
   title: string;
@@ -104,6 +105,16 @@ const TaskbaseMockup = () => {
             onClick={() => setCurrentSlide(2)}
           >
             Slide 3: Q&A
+          </button>
+          <button 
+            className="px-4 py-2 rounded transition-colors"
+            style={{
+              backgroundColor: currentSlide === 3 ? primary : background.main,
+              color: currentSlide === 3 ? 'white' : text.primary,
+            }}
+            onClick={() => setCurrentSlide(3)}
+          >
+            Slide 4: Learning Analytics
           </button>
         </div>
         
@@ -274,6 +285,15 @@ const TaskbaseMockup = () => {
             boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
           }}>
             <QASlide selectedPalette={selectedPalette} />
+          </div>
+        )}
+
+        {currentSlide === 3 && (
+          <div className="mb-6 border rounded-lg overflow-hidden shadow-lg" style={{ 
+            borderColor: border,
+            boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+          }}>
+            <LearningAnalyticsSlide selectedPalette={selectedPalette} />
           </div>
         )}
         
