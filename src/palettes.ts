@@ -53,7 +53,7 @@ export const palettes: ExtendedColorPalette[] = [
       status: {
         success: "#43A047",
         error: "#C62828",
-        warning: "#F59E0B",
+        warning: "#FFB84D",
         info: "#3B82F6"
       },
       border: "#E2E8F0",
@@ -74,13 +74,13 @@ export const palettes: ExtendedColorPalette[] = [
           "#000000"  // Black
         ],
         diverging: [
-          "#FF0A0A", // Red 900
-          "#FF4D4D", // Red 600
-          "#FF9999", // Red 300
-          "#FFFFFF", // White
-          "#99B3FF", // Blue 300
-          "#4D6FFF", // Blue 600
-          "#0007FF"  // Blue 900
+          "#C62828", // Deep red (error)
+          "#D15353", // Medium red
+          "#E8A9A9", // Light red
+          "#FFB84D", // Yellow (warning)
+          "#98CB9A", // Light green
+          "#5FAE63", // Medium green
+          "#43A047"  // Deep green (success)
         ],
         accent: [
           "#0007FF", // Blue
@@ -132,13 +132,13 @@ export const palettes: ExtendedColorPalette[] = [
           "#1A1A2E"  // Dark blue
         ],
         diverging: [
-          "#E03E3E", // Red (matched to status.error)
-          "#F76D45", // Light red/orange
-          "#FFBCB8", // Very light red
-          "#FFFFFF", // White
-          "#B8DDFF", // Light blue
-          "#5592E0", // Blue
-          "#4280FF"  // Dark blue (matched to status.info)
+          "#E03E3E", // Deep red (error)
+          "#E66565", // Medium red
+          "#F3B2B2", // Light red
+          "#F7B955", // Yellow (warning)
+          "#90D5B8", // Light green
+          "#54BE91", // Medium green
+          "#36B37E"  // Deep green (success)
         ],
         accent: [
           "#5E4BD0", // Primary purple
@@ -169,7 +169,7 @@ export const palettes: ExtendedColorPalette[] = [
       status: {
         success: "#10B981", // Cool-toned green that fits the indigo palette
         error: "#EF4444", // Warm red that contrasts nicely with the cool indigo
-        warning: "#F59E0B", // Rich amber that works with the palette
+        warning: "#FFB84D", // Rich amber that works with the palette
         info: "#3B82F6" // Vibrant blue that aligns with the indigo theme
       },
       border: "#D2DBE9", // Slightly stronger for better definition
@@ -190,13 +190,13 @@ export const palettes: ExtendedColorPalette[] = [
           "#0A1023"  // Dark blue
         ],
         diverging: [
-          "#EF4444", // Red (matched to status.error)
-          "#F06A3F", // Orange
-          "#FFB892", // Light peach
-          "#FFFFFF", // White
-          "#B3D4FF", // Light blue
-          "#4889F8", // Blue
-          "#3B82F6"  // Deep blue (matched to status.info)
+          "#EF4444", // Deep red (error)
+          "#F26969", // Medium red
+          "#F9B4B4", // Light red
+          "#FFB84D", // Yellow (warning)
+          "#7CD9BA", // Light green
+          "#34C494", // Medium green
+          "#10B981"  // Deep green (success)
         ],
         accent: [
           "#4038C4", // Primary indigo
@@ -227,7 +227,7 @@ export const palettes: ExtendedColorPalette[] = [
       status: {
         success: "#059669", // Deep teal-green that complements the cobalt theme
         error: "#DC2626", // Strong red that stands out against the cobalt palette
-        warning: "#D97706", // Deep amber that pairs with the cooler cobalt palette
+        warning: "#F5B93E", // Deep amber that pairs with the cooler cobalt palette
         info: "#2563EB" // Rich blue that works with the cobalt theme
       },
       border: "#CCD4E5", // Slightly stronger for better definition
@@ -248,13 +248,13 @@ export const palettes: ExtendedColorPalette[] = [
           "#0C1220"  // Near black
         ],
         diverging: [
-          "#DC2626", // Red (matched to status.error)
-          "#E15832", // Orange
-          "#F9BCA9", // Light peach
-          "#FFFFFF", // White
-          "#A7D3FF", // Light blue
-          "#2A99FF", // Mid blue
-          "#2563EB"  // Dark blue (matched to status.info)
+          "#DC2626", // Deep red (error)
+          "#E35151", // Medium red
+          "#F1A8A8", // Light red
+          "#F5B93E", // Yellow (warning)
+          "#76C5AD", // Light green
+          "#2BA680", // Medium green
+          "#059669"  // Deep green (success)
         ],
         accent: [
           "#3830B0", // Primary cobalt
@@ -306,13 +306,13 @@ export const palettes: ExtendedColorPalette[] = [
           "#151632"  // Dark blue
         ],
         diverging: [
-          "#F43F5E", // Red (matched to status.error)
-          "#E75542", // Salmon
-          "#F9B2A9", // Light salmon
-          "#FFFFFF", // White
-          "#B5D2FF", // Light blue
-          "#619BFF", // Mid blue
-          "#38BDF8"  // Deep blue (matched to status.info)
+          "#F43F5E", // Deep red (error)
+          "#F6657E", // Medium red
+          "#FBB2BF", // Light red
+          "#FBBF24", // Yellow (warning)
+          "#85DFA6", // Light green
+          "#43CE76", // Medium green
+          "#22C55E"  // Deep green (success)
         ],
         accent: [
           "#5546E8", // Primary blurple

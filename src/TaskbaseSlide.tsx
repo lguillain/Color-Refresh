@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExtendedColorPalette } from './palettes';
 import { Progress } from './components/ui/progress';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
 interface TaskbaseSlideProps {
   selectedPalette: ExtendedColorPalette;
@@ -10,20 +10,37 @@ interface TaskbaseSlideProps {
 const TaskbaseSlide: React.FC<TaskbaseSlideProps> = ({ selectedPalette }) => {
   const { primary, secondary, tertiary, background, text, border, shadow, status } = selectedPalette.colors;
 
-  // Mock data for the bar chart
+  // Improved data for the bar chart with more meaningful names and realistic values
   const performanceData = [
-    { name: 'Entfall...', concept: 25, misconception: 75 },
-    { name: 'Indikati...', concept: 45, misconception: 55 },
-    { name: 'mein', concept: 60, misconception: 40 },
-    { name: 'Konjugati...', concept: 35, misconception: 65 },
-    { name: 'Lesen kön...', concept: 50, misconception: 50 },
+    { name: 'Entfallen', concept: 62, misconception: 38 },
+    { name: 'Indikativ', concept: 45, misconception: 55 },
+    { name: 'Konjugation', concept: 78, misconception: 22 },
+    { name: 'Verbform', concept: 35, misconception: 65 },
+    { name: 'Leseverständnis', concept: 50, misconception: 50 },
   ];
 
-  // Mock data for the pie chart
+  // Improved pie chart data with more realistic distribution
   const answerDistributionData = [
     { name: 'Correct', value: 35, color: status.success },
     { name: 'Partially Correct', value: 45, color: status.warning },
     { name: 'Incorrect', value: 20, color: status.error }
+  ];
+
+  // Data for a new stacked bar chart showing answer attempts by aspect
+  const aspectPerformanceData = [
+    { name: 'Verb Form', correct: 22, partiallyCorrect: 45, incorrect: 33 },
+    { name: 'Tense', correct: 42, partiallyCorrect: 30, incorrect: 28 },
+    { name: 'Person', correct: 65, partiallyCorrect: 25, incorrect: 10 },
+    { name: 'Spelling', correct: 48, partiallyCorrect: 32, incorrect: 20 },
+  ];
+
+  // Common answers data
+  const commonAnswers = [
+    { answer: "Damals sagtest du nicht die Wahrheit.", percentage: 45, status: "correct" },
+    { answer: "Damals sagte du nicht die Wahrheit.", percentage: 20, status: "incorrect" },
+    { answer: "Damals du sagtest nicht die Wahrheit.", percentage: 15, status: "incorrect" },
+    { answer: "Damals sagtest du die Wahrheit nicht.", percentage: 12, status: "correct" },
+    { answer: "Du sagtest damals nicht die Wahrheit.", percentage: 8, status: "partiallyCorrect" },
   ];
 
   return (
@@ -183,74 +200,145 @@ const TaskbaseSlide: React.FC<TaskbaseSlideProps> = ({ selectedPalette }) => {
                   </div>
                 </div>
 
-                {/* Bar chart */}
-                <div className="h-40 mt-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <button className="opacity-40 hover:opacity-100 transition-opacity" style={{ color: text.primary }}>←</button>
-                    <button className="opacity-40 hover:opacity-100 transition-opacity" style={{ color: text.primary }}>→</button>
+                {/* Improved: Showing aspect performance chart */}
+                <div 
+                  className="p-5 rounded-lg mb-6 mt-8"
+                  style={{ 
+                    backgroundColor: background.card,
+                    boxShadow: `0 2px 8px ${shadow}`
+                  }}
+                >
+                  <h3 className="font-semibold mb-4" style={{ color: text.primary }}>Performance by Aspect</h3>
+                  <div className="h-72">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={aspectPerformanceData}
+                        margin={{ top: 10, right: 30, left: 0, bottom: 20 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={border} />
+                        <XAxis 
+                          dataKey="name"
+                          tick={{ fill: text.secondary, fontSize: 12 }}
+                          axisLine={{ stroke: border }}
+                          tickLine={{ stroke: border }}
+                        />
+                        <YAxis 
+                          tickFormatter={(value) => `${value}%`}
+                          tick={{ fill: text.secondary, fontSize: 12 }}
+                          axisLine={{ stroke: border }}
+                          tickLine={{ stroke: border }}
+                        />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: background.card,
+                            border: `1px solid ${border}`,
+                            borderRadius: '8px',
+                            boxShadow: `0 4px 6px -1px ${shadow}`,
+                            padding: '8px 12px'
+                          }}
+                          formatter={(value: any) => [`${value}%`, '']}
+                        />
+                        <Legend 
+                          verticalAlign="bottom"
+                          height={36}
+                          iconType="circle"
+                          formatter={(value) => {
+                            return <span style={{ color: text.secondary, fontSize: '12px' }}>{value}</span>;
+                          }}
+                        />
+                        <Bar 
+                          dataKey="correct" 
+                          name="Correct"
+                          stackId="a" 
+                          fill={status.success} 
+                          radius={[4, 4, 0, 0]}
+                        />
+                        <Bar 
+                          dataKey="partiallyCorrect" 
+                          name="Partially Correct"
+                          stackId="a" 
+                          fill={status.warning}
+                        />
+                        <Bar 
+                          dataKey="incorrect" 
+                          name="Incorrect"
+                          stackId="a" 
+                          fill={status.error}
+                          radius={[0, 0, 4, 4]}
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
                   </div>
-                  <ResponsiveContainer width="100%" height={120}>
-                    <BarChart
-                      data={performanceData}
-                      layout="vertical"
-                      barSize={16}
-                      margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-                    >
-                      <XAxis 
-                        type="number" 
-                        hide 
-                        domain={[0, 100]}
-                      />
-                      <YAxis 
-                        type="category" 
-                        dataKey="name" 
-                        tick={{ fill: text.secondary, fontSize: 12 }}
-                        width={96}
-                        axisLine={false}
-                        tickLine={false}
-                      />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: background.card,
-                          border: `1px solid ${border}`,
-                          borderRadius: '8px',
-                          boxShadow: `0 4px 6px -1px ${shadow}`,
-                          padding: '8px 12px'
-                        }}
-                        labelStyle={{ 
-                          color: text.primary,
-                          fontWeight: 500,
-                          marginBottom: '4px'
-                        }}
-                        itemStyle={{ 
-                          color: text.primary,
-                          padding: '2px 0'
-                        }}
-                        formatter={(value: number) => [`${value}%`, 'Percentage']}
-                      />
-                      <Bar 
-                        dataKey="concept" 
-                        fill={status.success} 
-                        radius={[0, 4, 4, 0]}
-                        animationDuration={800}
-                      />
-                      <Bar 
-                        dataKey="misconception" 
-                        fill={status.error}
-                        radius={[0, 4, 4, 0]}
-                        animationDuration={800}
-                      />
-                    </BarChart>
-                  </ResponsiveContainer>
-                  <div className="flex justify-end gap-4 mt-3">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: status.success }} />
-                      <span className="text-sm font-medium" style={{ color: text.secondary }}>Concept</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: status.error }} />
-                      <span className="text-sm font-medium" style={{ color: text.secondary }}>Misconception</span>
-                    </div>
+                </div>
+
+                {/* Improved: Concept vs. Misconception horizontal bar chart */}
+                <div 
+                  className="p-5 rounded-lg"
+                  style={{ 
+                    backgroundColor: background.card,
+                    boxShadow: `0 2px 8px ${shadow}`
+                  }}
+                >
+                  <h3 className="font-semibold mb-5" style={{ color: text.primary }}>Concept vs. Misconception</h3>
+                  <div className="h-56">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={performanceData}
+                        layout="vertical"
+                        barSize={20}
+                        margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={border} />
+                        <XAxis 
+                          type="number" 
+                          domain={[0, 100]}
+                          tickFormatter={(value) => `${value}%`}
+                          tick={{ fill: text.secondary, fontSize: 12 }}
+                          axisLine={{ stroke: border }}
+                          tickLine={{ stroke: border }}
+                        />
+                        <YAxis 
+                          type="category" 
+                          dataKey="name" 
+                          tick={{ fill: text.secondary, fontSize: 12 }}
+                          width={100}
+                          axisLine={false}
+                          tickLine={false}
+                        />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: background.card,
+                            border: `1px solid ${border}`,
+                            borderRadius: '8px',
+                            boxShadow: `0 4px 6px -1px ${shadow}`,
+                            padding: '8px 12px'
+                          }}
+                          formatter={(value: any) => [`${value}%`, '']}
+                        />
+                        <Legend 
+                          verticalAlign="top"
+                          height={36}
+                          iconType="circle"
+                          formatter={(value) => {
+                            return <span style={{ color: text.secondary, fontSize: '12px' }}>{value}</span>;
+                          }}
+                        />
+                        <Bar 
+                          dataKey="concept" 
+                          name="Concept"
+                          fill={status.success} 
+                          radius={[4, 0, 0, 4]}
+                          animationDuration={800}
+                        />
+                        <Bar 
+                          dataKey="misconception" 
+                          name="Misconception"
+                          fill={status.error}
+                          radius={[0, 4, 4, 0]}
+                          animationDuration={800}
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
                   </div>
                 </div>
               </div>
@@ -277,36 +365,41 @@ const TaskbaseSlide: React.FC<TaskbaseSlideProps> = ({ selectedPalette }) => {
                   Damals - sagen - du - nicht die Wahrheit - .
                 </div>
 
-                {/* Performance chart */}
+                {/* Improved Performance Breakdown with realistic data */}
                 <div className="mt-8">
                   <h4 className="font-semibold mb-5" style={{ color: text.primary }}>Performance Breakdown</h4>
                   <div className="flex gap-6">
                     <div className="flex-1">
-                      <div className="relative">
-                        <Progress 
-                          value={35} 
-                          className="h-3 w-full rounded-full"
-                          style={{ 
-                            '--progress-background': status.success
-                          }}
-                        />
-                        <div className="absolute top-0 right-0 text-xs" style={{ color: text.muted }}>35%</div>
+                      <div className="flex mb-3">
+                        <div className="relative w-full h-3 rounded-full overflow-hidden" style={{ backgroundColor: background.hover }}>
+                          <div className="absolute top-0 left-0 h-full" style={{ width: '35%', backgroundColor: status.success }}></div>
+                          <div className="absolute top-0 left-[35%] h-full" style={{ width: '45%', backgroundColor: status.warning }}></div>
+                          <div className="absolute top-0 left-[80%] h-full" style={{ width: '20%', backgroundColor: status.error }}></div>
+                        </div>
+                      </div>
+                      <div className="flex items-center text-xs justify-between">
+                        <span style={{ color: text.muted }}>0.0</span>
+                        <span style={{ color: text.muted }}>Total: 100%</span>
                       </div>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-3">
                         <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: status.success }} />
-                        <span className="text-sm font-medium" style={{ color: text.secondary }}>Correct</span>
+                        <span className="text-sm font-medium" style={{ color: text.secondary }}>Correct (35%)</span>
+                      </div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: status.warning }} />
+                        <span className="text-sm font-medium" style={{ color: text.secondary }}>Partially Correct (45%)</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: status.warning }} />
-                        <span className="text-sm font-medium" style={{ color: text.secondary }}>Partially Correct</span>
+                        <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: status.error }} />
+                        <span className="text-sm font-medium" style={{ color: text.secondary }}>Incorrect (20%)</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Pie Chart for Answer Distribution */}
+                {/* Improved Pie Chart for Answer Distribution */}
                 <div className="mt-8">
                   <h4 className="font-semibold mb-5" style={{ color: text.primary }}>Answer Distribution</h4>
                   <div className="h-48">
@@ -320,6 +413,26 @@ const TaskbaseSlide: React.FC<TaskbaseSlideProps> = ({ selectedPalette }) => {
                           outerRadius={60}
                           paddingAngle={2}
                           dataKey="value"
+                          labelLine={false}
+                          label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+                            const RADIAN = Math.PI / 180;
+                            const radius = outerRadius * 1.2;
+                            const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                            const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                            
+                            return (
+                              <text
+                                x={x}
+                                y={y}
+                                fill={text.secondary}
+                                textAnchor={x > cx ? 'start' : 'end'}
+                                dominantBaseline="central"
+                                fontSize={12}
+                              >
+                                {`${(percent * 100).toFixed(0)}%`}
+                              </text>
+                            );
+                          }}
                         >
                           {answerDistributionData.map((entry, index) => (
                             <Cell 
@@ -353,7 +466,7 @@ const TaskbaseSlide: React.FC<TaskbaseSlideProps> = ({ selectedPalette }) => {
                   </div>
                 </div>
 
-                {/* Top 5 Most Common Answers */}
+                {/* Improved: Top 5 Most Common Answers with actual data */}
                 <div className="mt-8">
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="font-semibold" style={{ color: text.primary }}>
@@ -361,17 +474,32 @@ const TaskbaseSlide: React.FC<TaskbaseSlideProps> = ({ selectedPalette }) => {
                     </h4>
                     <span className="text-sm" style={{ color: text.muted }}>100% of all answers</span>
                   </div>
-                  <button 
-                    className="w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors flex items-center justify-between hover:bg-white/5"
-                    style={{ 
-                      backgroundColor: background.hover,
-                      color: text.primary,
-                      border: `1px solid ${border}`
-                    }}
-                  >
-                    <span>Expand answers</span>
-                    <span className="text-xs opacity-60">▼</span>
-                  </button>
+                  
+                  <div className="border rounded-lg overflow-hidden" style={{ borderColor: border }}>
+                    {commonAnswers.map((answer, index) => (
+                      <div 
+                        key={index}
+                        className="flex items-center justify-between p-3 border-b last:border-b-0"
+                        style={{ 
+                          borderColor: border,
+                          backgroundColor: index % 2 === 0 ? background.hover : 'transparent'
+                        }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <div 
+                            className="w-2 h-2 rounded-full" 
+                            style={{ 
+                              backgroundColor: 
+                                answer.status === "correct" ? status.success : 
+                                answer.status === "partiallyCorrect" ? status.warning : status.error 
+                            }}
+                          />
+                          <span className="text-sm" style={{ color: text.primary }}>{answer.answer}</span>
+                        </div>
+                        <span className="text-xs font-medium" style={{ color: text.muted }}>{answer.percentage}%</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -382,4 +510,4 @@ const TaskbaseSlide: React.FC<TaskbaseSlideProps> = ({ selectedPalette }) => {
   );
 };
 
-export default TaskbaseSlide; 
+export default TaskbaseSlide;
