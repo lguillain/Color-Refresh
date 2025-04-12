@@ -51,8 +51,8 @@ export const palettes: ExtendedColorPalette[] = [
         muted: "#6E7191"
       },
       status: {
-        success: "#22C55E",
-        error: "#EF4444",
+        success: "#43A047",
+        error: "#C62828",
         warning: "#F59E0B",
         info: "#3B82F6"
       },
@@ -60,18 +60,34 @@ export const palettes: ExtendedColorPalette[] = [
       shadow: "rgba(98, 101, 201, 0.12)",
       graph: {
         sequential: [
-          "#D8B4FE", "#C084FC", "#A855F7", "#9333EA", 
-          "#7E22CE", "#6B21A8", "#581C87", "#4C1D95"
+          "#E6E7FF", "#C4C6FF", "#A3A6FF", "#8286FF", 
+          "#6166FF", "#4046FF", "#1F26FF", "#0007FF"
         ],
         categorical: [
-          "#E879F9", "#2DD4BF", "#FB923C", "#818CF8", 
-          "#F472B6", "#34D399", "#FBBF24", "#38BDF8"
+          "#0007FF", // Blue
+          "#00DBA8", // Mint
+          "#FF0A0A", // Red
+          "#FFB800", // Gold
+          "#00B828", // Green
+          "#4B5CCC", // Slate blue
+          "#71757A", // Gray
+          "#000000"  // Black
         ],
         diverging: [
-          "#C084FC", "#D8B4FE", "#E9D5FF", "#FFFFFF", 
-          "#BAE6FD", "#7DD3FC", "#38BDF8"
+          "#FF0A0A", // Red 900
+          "#FF4D4D", // Red 600
+          "#FF9999", // Red 300
+          "#FFFFFF", // White
+          "#99B3FF", // Blue 300
+          "#4D6FFF", // Blue 600
+          "#0007FF"  // Blue 900
         ],
-        accent: ["#F0ABFC", "#2DD4BF", "#FB923C", "#818CF8"]
+        accent: [
+          "#0007FF", // Blue
+          "#00DBA8", // Mint
+          "#FF0A0A", // Red
+          "#FFB800"  // Gold
+        ]
       }
     }
   },
@@ -102,18 +118,18 @@ export const palettes: ExtendedColorPalette[] = [
       shadow: "rgba(107, 75, 255, 0.12)",
       graph: {
         sequential: [
-          "#FDB4D5", "#FC85BB", "#FA56A1", "#F72786", 
-          "#D91170", "#B8005B", "#960047", "#740034"
+          "#FFF1F0", "#FFD4CC", "#FFB8AA", "#FF9C88", 
+          "#FF8066", "#FF6344", "#FF4722", "#FF2B00"
         ],
         categorical: [
-          "#F0ABFC", "#86EFAC", "#FDA4AF", "#93C5FD", 
-          "#C4B5FD", "#6EE7B7", "#FDE68A", "#7DD3FC"
+          "#FF6347", "#00C2A8", "#FFB72B", "#4CC2FF", 
+          "#F670DD", "#2DCE98", "#FFCC5C", "#7C8CFF"
         ],
         diverging: [
-          "#FDB4D5", "#FCBADE", "#FDC0E5", "#FFFFFF", 
-          "#BFE9FF", "#7DD3FC", "#38BDF8"
+          "#FF5252", "#FF8A8A", "#FFBDBD", "#FFFFFF", 
+          "#A5F3FC", "#22D3EE", "#0891B2"
         ],
-        accent: ["#F0ABFC", "#86EFAC", "#FDA4AF", "#93C5FD"]
+        accent: ["#FF6347", "#0AB68B", "#FDBE3B", "#4CC2FF"]
       }
     }
   },
@@ -144,18 +160,18 @@ export const palettes: ExtendedColorPalette[] = [
       shadow: "rgba(79, 70, 229, 0.12)",
       graph: {
         sequential: [
-          "#FCD34D", "#FBBF24", "#F59E0B", "#D97706", 
-          "#B45309", "#92400E", "#78350F", "#451A03"
+          "#FFF4E0", "#FFE4B3", "#FFD586", "#FFC559", 
+          "#FFB62D", "#FFA700", "#D68E00", "#AD7400"
         ],
         categorical: [
-          "#D8B4FE", "#67E8F9", "#FDE68A", "#A5B4FC", 
-          "#F9A8D4", "#6EE7B7", "#FCD34D", "#7DD3FC"
+          "#FF7043", "#26C6DA", "#FFAB00", "#5C7CFA", 
+          "#FF4081", "#2DCE89", "#FFCA28", "#42A5F5"
         ],
         diverging: [
-          "#FCD34D", "#FDE68A", "#FEF3C7", "#FFFFFF", 
-          "#DDD6FE", "#C4B5FD", "#A78BFA"
+          "#FF4D4D", "#FF8080", "#FFB2B2", "#F9FAFB", 
+          "#CFFAFE", "#67E8F9", "#06B6D4"
         ],
-        accent: ["#D8B4FE", "#67E8F9", "#FDE68A", "#A5B4FC"]
+        accent: ["#FF7043", "#26C6DA", "#FFAB00", "#5C7CFA"]
       }
     }
   },
@@ -186,18 +202,18 @@ export const palettes: ExtendedColorPalette[] = [
       shadow: "rgba(67, 56, 202, 0.12)",
       graph: {
         sequential: [
-          "#67E8F9", "#22D3EE", "#06B6D4", "#0891B2", 
-          "#0E7490", "#155E75", "#164E63", "#083344"
+          "#FFF3E0", "#FFE0B2", "#FFCC80", "#FFB74D", 
+          "#FFA726", "#FF9800", "#F57C00", "#EF6C00"
         ],
         categorical: [
-          "#F0ABFC", "#94A3B8", "#FDE68A", "#818CF8", 
-          "#FDA4AF", "#67E8F9", "#D8B4FE", "#A5B4FC"
+          "#F87171", "#4DD0E1", "#FFC107", "#7083F7", 
+          "#F875AA", "#0DCAF0", "#FF9800", "#38B6FF"
         ],
         diverging: [
-          "#67E8F9", "#A5F3FC", "#CFFAFE", "#FFFFFF", 
-          "#E9D5FF", "#D8B4FE", "#C084FC"
+          "#F87171", "#FECACA", "#FEE2E2", "#F8FAFC", 
+          "#DBEAFE", "#93C5FD", "#3B82F6"
         ],
-        accent: ["#F0ABFC", "#94A3B8", "#FDE68A", "#818CF8"]
+        accent: ["#F87171", "#4DD0E1", "#FFC107", "#7083F7"]
       }
     }
   },
@@ -228,18 +244,18 @@ export const palettes: ExtendedColorPalette[] = [
       shadow: "rgba(99, 91, 255, 0.12)",
       graph: {
         sequential: [
-          "#F472B6", "#EC4899", "#DB2777", "#BE185D", 
-          "#9D174D", "#831843", "#6B1839", "#500724"
+          "#FFF7EB", "#FFE9C4", "#FFDB9D", "#FFCD76", 
+          "#FFBF4F", "#FFB129", "#FFA302", "#EB9400"
         ],
         categorical: [
-          "#D8B4FE", "#94A3B8", "#FDE68A", "#A5B4FC", 
-          "#F472B6", "#67E8F9", "#C4B5FD", "#7DD3FC"
+          "#FF5A5A", "#2ECBD2", "#FF9F43", "#687EFF", 
+          "#FF66AA", "#33D69F", "#FFD166", "#48B0FF"
         ],
         diverging: [
-          "#F472B6", "#F9A8D4", "#FBCFE8", "#FFFFFF", 
-          "#DDD6FE", "#C4B5FD", "#A78BFA"
+          "#FF5A5A", "#FF9C9C", "#FFCECE", "#F8FAFC", 
+          "#B4E4FD", "#5BC0FA", "#00A0F7"
         ],
-        accent: ["#D8B4FE", "#94A3B8", "#FDE68A", "#A5B4FC"]
+        accent: ["#FF5A5A", "#2ECBD2", "#FF9F43", "#687EFF"]
       }
     }
   }

@@ -23,6 +23,33 @@ interface TimeData {
   exercises: number;
 }
 
+// Additional data interfaces
+interface StudentPerformanceData {
+  name: string;
+  assignments: number;
+  quizzes: number;
+  projects: number;
+  participation: number;
+}
+
+interface CourseEngagementData {
+  week: string;
+  videoViews: number;
+  forumPosts: number;
+  assignments: number;
+  quizzes: number;
+}
+
+interface LearningOutcomesData {
+  name: string;
+  value: number;
+}
+
+interface AssessmentTypesData {
+  name: string;
+  value: number;
+}
+
 const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps) => {
   const { primary, secondary, tertiary, background, text, border, shadow, status, graph } = selectedPalette.colors;
 
@@ -31,6 +58,7 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
     return graph?.[type]?.[index] || fallback;
   };
 
+  // Existing data
   const skillsData: SkillData[] = [
     { name: "Present Tense", percentage: 90, color: getGraphColor('categorical', 0, status.success) },
     { name: "Basic Structure", percentage: 85, color: getGraphColor('categorical', 1, status.success) },
@@ -61,6 +89,39 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
     incorrect: 35,
     accuracy: 71
   };
+
+  // Additional data for new charts
+  const studentPerformanceData: StudentPerformanceData[] = [
+    { name: 'Student A', assignments: 85, quizzes: 92, projects: 88, participation: 95 },
+    { name: 'Student B', assignments: 78, quizzes: 85, projects: 82, participation: 90 },
+    { name: 'Student C', assignments: 92, quizzes: 88, projects: 95, participation: 85 },
+    { name: 'Student D', assignments: 80, quizzes: 75, projects: 78, participation: 82 },
+    { name: 'Student E', assignments: 88, quizzes: 90, projects: 85, participation: 88 }
+  ];
+
+  const courseEngagementData: CourseEngagementData[] = [
+    { week: 'Week 1', videoViews: 120, forumPosts: 45, assignments: 30, quizzes: 25 },
+    { week: 'Week 2', videoViews: 150, forumPosts: 60, assignments: 35, quizzes: 30 },
+    { week: 'Week 3', videoViews: 180, forumPosts: 75, assignments: 40, quizzes: 35 },
+    { week: 'Week 4', videoViews: 200, forumPosts: 90, assignments: 45, quizzes: 40 },
+    { week: 'Week 5', videoViews: 220, forumPosts: 105, assignments: 50, quizzes: 45 }
+  ];
+
+  const learningOutcomesData: LearningOutcomesData[] = [
+    { name: 'Understanding', value: 85 },
+    { name: 'Application', value: 75 },
+    { name: 'Analysis', value: 80 },
+    { name: 'Evaluation', value: 70 },
+    { name: 'Creation', value: 65 }
+  ];
+
+  const assessmentTypesData: AssessmentTypesData[] = [
+    { name: 'Multiple Choice', value: 35 },
+    { name: 'Short Answer', value: 25 },
+    { name: 'Essay', value: 20 },
+    { name: 'Project', value: 15 },
+    { name: 'Presentation', value: 5 }
+  ];
 
   return (
     <div className="w-full h-full p-8 grid grid-cols-12 gap-6" style={{ backgroundColor: background.main }}>
@@ -235,6 +296,133 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
               />
               <Bar dataKey="exercises" fill={getGraphColor('accent', 2, tertiary)} radius={[4, 4, 0, 0]} />
             </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Student Performance Chart */}
+      <div className="col-span-6 rounded-xl p-6" style={{ 
+        backgroundColor: background.card,
+        boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+      }}>
+        <h2 className="text-lg font-medium mb-4" style={{ color: text.primary }}>Student Performance</h2>
+        <div className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={studentPerformanceData}>
+              <CartesianGrid strokeDasharray="3 3" stroke={border} />
+              <XAxis dataKey="name" stroke={text.muted} />
+              <YAxis stroke={text.muted} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: background.card,
+                  borderColor: border,
+                  borderRadius: '8px'
+                }}
+              />
+              <Legend />
+              <Bar dataKey="assignments" fill={getGraphColor('categorical', 0, primary)} />
+              <Bar dataKey="quizzes" fill={getGraphColor('categorical', 1, secondary)} />
+              <Bar dataKey="projects" fill={getGraphColor('categorical', 2, tertiary)} />
+              <Bar dataKey="participation" fill={getGraphColor('categorical', 3, status.success)} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Course Engagement Chart */}
+      <div className="col-span-6 rounded-xl p-6" style={{ 
+        backgroundColor: background.card,
+        boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+      }}>
+        <h2 className="text-lg font-medium mb-4" style={{ color: text.primary }}>Course Engagement</h2>
+        <div className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={courseEngagementData}>
+              <CartesianGrid strokeDasharray="3 3" stroke={border} />
+              <XAxis dataKey="week" stroke={text.muted} />
+              <YAxis stroke={text.muted} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: background.card,
+                  borderColor: border,
+                  borderRadius: '8px'
+                }}
+              />
+              <Legend />
+              <Line type="monotone" dataKey="videoViews" stroke={getGraphColor('accent', 0, primary)} />
+              <Line type="monotone" dataKey="forumPosts" stroke={getGraphColor('accent', 1, secondary)} />
+              <Line type="monotone" dataKey="assignments" stroke={getGraphColor('accent', 2, tertiary)} />
+              <Line type="monotone" dataKey="quizzes" stroke={getGraphColor('accent', 3, status.success)} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Learning Outcomes and Assessment Types Charts */}
+      <div className="col-span-6 rounded-xl p-6" style={{ 
+        backgroundColor: background.card,
+        boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+      }}>
+        <h2 className="text-lg font-medium mb-4" style={{ color: text.primary }}>Learning Outcomes</h2>
+        <div className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={learningOutcomesData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={80}
+                fill={primary}
+                dataKey="value"
+              >
+                {learningOutcomesData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={getGraphColor('categorical', index, primary)} />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: background.card,
+                  borderColor: border,
+                  borderRadius: '8px'
+                }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className="col-span-6 rounded-xl p-6" style={{ 
+        backgroundColor: background.card,
+        boxShadow: `0 4px 6px -1px ${shadow}, 0 2px 4px -2px ${shadow}`
+      }}>
+        <h2 className="text-lg font-medium mb-4" style={{ color: text.primary }}>Assessment Types</h2>
+        <div className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={assessmentTypesData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={80}
+                fill={primary}
+                dataKey="value"
+              >
+                {assessmentTypesData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={getGraphColor('categorical', index + 4, primary)} />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: background.card,
+                  borderColor: border,
+                  borderRadius: '8px'
+                }}
+              />
+            </PieChart>
           </ResponsiveContainer>
         </div>
       </div>
