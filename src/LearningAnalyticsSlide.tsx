@@ -216,12 +216,28 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
                   outerRadius={80}
                   paddingAngle={5}
                   dataKey="value"
+                  animationBegin={0}
+                  animationDuration={1000}
+                  animationEasing="ease-out"
                 >
                   {distributionData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={entry.color}
+                      stroke={background.card}
+                      strokeWidth={2}
+                    />
                   ))}
                 </Pie>
-                <Tooltip />
+                <Tooltip 
+                  contentStyle={{
+                    backgroundColor: background.card,
+                    border: `1px solid ${border}`,
+                    borderRadius: '8px',
+                    boxShadow: `0 4px 6px -1px ${shadow}`
+                  }}
+                  labelStyle={{ color: text.primary, fontWeight: 500 }}
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -250,25 +266,56 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
         <div className="space-y-6">
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={timeData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={border} />
-              <XAxis dataKey="date" stroke={text.muted} />
-              <YAxis stroke={text.muted} />
+              <CartesianGrid 
+                strokeDasharray="3 3" 
+                stroke={border} 
+                vertical={false}
+              />
+              <XAxis 
+                dataKey="date" 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
               <Tooltip 
                 contentStyle={{ 
                   backgroundColor: background.card,
                   border: `1px solid ${border}`,
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  boxShadow: `0 4px 6px -1px ${shadow}`
                 }}
-                labelStyle={{ color: text.primary }}
+                labelStyle={{ color: text.primary, fontWeight: 500 }}
+                cursor={{ stroke: border, strokeWidth: 1, strokeDasharray: '3 3' }}
               />
-              <Legend />
+              <Legend 
+                verticalAlign="top" 
+                height={36}
+                wrapperStyle={{ paddingBottom: '20px' }}
+              />
               <Line 
                 type="monotone" 
                 dataKey="minutes" 
                 name="Minutes" 
                 stroke={getGraphColor('accent', 0, primary)} 
                 strokeWidth={2}
-                dot={{ fill: getGraphColor('accent', 0, primary) }}
+                dot={{ 
+                  fill: getGraphColor('accent', 0, primary),
+                  stroke: background.card,
+                  strokeWidth: 2,
+                  r: 4
+                }}
+                activeDot={{ 
+                  r: 6,
+                  stroke: background.card,
+                  strokeWidth: 2
+                }}
               />
               <Line 
                 type="monotone" 
@@ -276,25 +323,59 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
                 name="Exercises" 
                 stroke={getGraphColor('accent', 1, secondary)}
                 strokeWidth={2}
-                dot={{ fill: getGraphColor('accent', 1, secondary) }}
+                dot={{ 
+                  fill: getGraphColor('accent', 1, secondary),
+                  stroke: background.card,
+                  strokeWidth: 2,
+                  r: 4
+                }}
+                activeDot={{ 
+                  r: 6,
+                  stroke: background.card,
+                  strokeWidth: 2
+                }}
               />
             </LineChart>
           </ResponsiveContainer>
 
           <ResponsiveContainer width="100%" height={100}>
             <BarChart data={timeData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={border} />
-              <XAxis dataKey="date" stroke={text.muted} />
-              <YAxis stroke={text.muted} />
+              <CartesianGrid 
+                strokeDasharray="3 3" 
+                stroke={border}
+                vertical={false}
+              />
+              <XAxis 
+                dataKey="date" 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
               <Tooltip 
                 contentStyle={{ 
                   backgroundColor: background.card,
                   border: `1px solid ${border}`,
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  boxShadow: `0 4px 6px -1px ${shadow}`
                 }}
-                labelStyle={{ color: text.primary }}
+                labelStyle={{ color: text.primary, fontWeight: 500 }}
+                cursor={{ fill: background.hover }}
               />
-              <Bar dataKey="exercises" fill={getGraphColor('accent', 2, tertiary)} radius={[4, 4, 0, 0]} />
+              <Bar 
+                dataKey="exercises" 
+                fill={getGraphColor('accent', 2, tertiary)} 
+                radius={[4, 4, 0, 0]}
+                animationBegin={0}
+                animationDuration={1000}
+                animationEasing="ease-out"
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -309,21 +390,71 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={studentPerformanceData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={border} />
-              <XAxis dataKey="name" stroke={text.muted} />
-              <YAxis stroke={text.muted} />
+              <CartesianGrid 
+                strokeDasharray="3 3" 
+                stroke={border}
+                vertical={false}
+              />
+              <XAxis 
+                dataKey="name" 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
               <Tooltip
                 contentStyle={{
                   backgroundColor: background.card,
-                  borderColor: border,
-                  borderRadius: '8px'
+                  border: `1px solid ${border}`,
+                  borderRadius: '8px',
+                  boxShadow: `0 4px 6px -1px ${shadow}`
                 }}
+                labelStyle={{ color: text.primary, fontWeight: 500 }}
+                cursor={{ fill: background.hover }}
               />
-              <Legend />
-              <Bar dataKey="assignments" fill={getGraphColor('categorical', 0, primary)} />
-              <Bar dataKey="quizzes" fill={getGraphColor('categorical', 1, secondary)} />
-              <Bar dataKey="projects" fill={getGraphColor('categorical', 2, tertiary)} />
-              <Bar dataKey="participation" fill={getGraphColor('categorical', 3, status.success)} />
+              <Legend 
+                verticalAlign="top" 
+                height={36}
+                wrapperStyle={{ paddingBottom: '20px' }}
+              />
+              <Bar 
+                dataKey="assignments" 
+                fill={getGraphColor('categorical', 0, primary)}
+                radius={[4, 4, 0, 0]}
+                animationBegin={0}
+                animationDuration={1000}
+                animationEasing="ease-out"
+              />
+              <Bar 
+                dataKey="quizzes" 
+                fill={getGraphColor('categorical', 1, secondary)}
+                radius={[4, 4, 0, 0]}
+                animationBegin={100}
+                animationDuration={1000}
+                animationEasing="ease-out"
+              />
+              <Bar 
+                dataKey="projects" 
+                fill={getGraphColor('categorical', 2, tertiary)}
+                radius={[4, 4, 0, 0]}
+                animationBegin={200}
+                animationDuration={1000}
+                animationEasing="ease-out"
+              />
+              <Bar 
+                dataKey="participation" 
+                fill={getGraphColor('categorical', 3, status.success)}
+                radius={[4, 4, 0, 0]}
+                animationBegin={300}
+                animationDuration={1000}
+                animationEasing="ease-out"
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -338,21 +469,107 @@ const LearningAnalyticsSlide = ({ selectedPalette }: LearningAnalyticsSlideProps
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={courseEngagementData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={border} />
-              <XAxis dataKey="week" stroke={text.muted} />
-              <YAxis stroke={text.muted} />
+              <CartesianGrid 
+                strokeDasharray="3 3" 
+                stroke={border}
+                vertical={false}
+              />
+              <XAxis 
+                dataKey="week" 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis 
+                stroke={text.muted}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 12 }}
+              />
               <Tooltip
                 contentStyle={{
                   backgroundColor: background.card,
-                  borderColor: border,
-                  borderRadius: '8px'
+                  border: `1px solid ${border}`,
+                  borderRadius: '8px',
+                  boxShadow: `0 4px 6px -1px ${shadow}`
+                }}
+                labelStyle={{ color: text.primary, fontWeight: 500 }}
+                cursor={{ stroke: border, strokeWidth: 1, strokeDasharray: '3 3' }}
+              />
+              <Legend 
+                verticalAlign="top" 
+                height={36}
+                wrapperStyle={{ paddingBottom: '20px' }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="videoViews" 
+                stroke={getGraphColor('accent', 0, primary)}
+                strokeWidth={2}
+                dot={{ 
+                  fill: getGraphColor('accent', 0, primary),
+                  stroke: background.card,
+                  strokeWidth: 2,
+                  r: 4
+                }}
+                activeDot={{ 
+                  r: 6,
+                  stroke: background.card,
+                  strokeWidth: 2
                 }}
               />
-              <Legend />
-              <Line type="monotone" dataKey="videoViews" stroke={getGraphColor('accent', 0, primary)} />
-              <Line type="monotone" dataKey="forumPosts" stroke={getGraphColor('accent', 1, secondary)} />
-              <Line type="monotone" dataKey="assignments" stroke={getGraphColor('accent', 2, tertiary)} />
-              <Line type="monotone" dataKey="quizzes" stroke={getGraphColor('accent', 3, status.success)} />
+              <Line 
+                type="monotone" 
+                dataKey="forumPosts" 
+                stroke={getGraphColor('accent', 1, secondary)}
+                strokeWidth={2}
+                dot={{ 
+                  fill: getGraphColor('accent', 1, secondary),
+                  stroke: background.card,
+                  strokeWidth: 2,
+                  r: 4
+                }}
+                activeDot={{ 
+                  r: 6,
+                  stroke: background.card,
+                  strokeWidth: 2
+                }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="assignments" 
+                stroke={getGraphColor('accent', 2, tertiary)}
+                strokeWidth={2}
+                dot={{ 
+                  fill: getGraphColor('accent', 2, tertiary),
+                  stroke: background.card,
+                  strokeWidth: 2,
+                  r: 4
+                }}
+                activeDot={{ 
+                  r: 6,
+                  stroke: background.card,
+                  strokeWidth: 2
+                }}
+              />
+              <Line 
+                type="monotone" 
+                dataKey="quizzes" 
+                stroke={getGraphColor('accent', 3, status.success)}
+                strokeWidth={2}
+                dot={{ 
+                  fill: getGraphColor('accent', 3, status.success),
+                  stroke: background.card,
+                  strokeWidth: 2,
+                  r: 4
+                }}
+                activeDot={{ 
+                  r: 6,
+                  stroke: background.card,
+                  strokeWidth: 2
+                }}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>

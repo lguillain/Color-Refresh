@@ -94,9 +94,9 @@ export const palettes: ExtendedColorPalette[] = [
   {
     title: "Violet Venture",
     colors: {
-      primary: "#6B4BFF",
-      secondary: "#00C2D7",
-      tertiary: "#9C6AE3",
+      primary: "#5E4BD0", // Deeper, more accessible purple
+      secondary: "#00B0C8", // More accessible teal with better contrast
+      tertiary: "#8C5AD3", // Complementary violet with better distinction
       background: {
         main: "#F5F7FF",
         light: "#FFFFFF",
@@ -104,41 +104,57 @@ export const palettes: ExtendedColorPalette[] = [
         hover: "#EAEDFF"
       },
       text: {
-        primary: "#1A1A2E",
-        secondary: "#4B4B66",
-        muted: "#6E7191"
+        primary: "#1A1A2E", // Dark enough for high contrast
+        secondary: "#3A3A56", // Slightly darker for better accessibility
+        muted: "#5E617F" // Still muted but more readable
       },
       status: {
-        success: "#22C55E",
-        error: "#EF4444",
-        warning: "#F59E0B",
-        info: "#3B82F6"
+        success: "#36B37E", // Bright green that complements the violet palette
+        error: "#E03E3E", // Vibrant red that stands out with violet scheme
+        warning: "#F7B955", // Warm amber that pairs well with the palette
+        info: "#4280FF" // Bright blue that complements the violet theme
       },
-      border: "#E2E8F0",
-      shadow: "rgba(107, 75, 255, 0.12)",
+      border: "#D8DEF0", // Slightly stronger border
+      shadow: "rgba(94, 75, 208, 0.12)",
       graph: {
         sequential: [
           "#FFF1F0", "#FFD4CC", "#FFB8AA", "#FF9C88", 
           "#FF8066", "#FF6344", "#FF4722", "#FF2B00"
         ],
         categorical: [
-          "#FF6347", "#00C2A8", "#FFB72B", "#4CC2FF", 
-          "#F670DD", "#2DCE98", "#FFCC5C", "#7C8CFF"
+          "#5E4BD0", // Primary purple
+          "#00B0C8", // Secondary teal
+          "#F76D45", // Orange 
+          "#FFBC3D", // Gold
+          "#36B37E", // Green (matched to status.success)
+          "#8C5AD3", // Tertiary violet
+          "#647284", // Gray
+          "#1A1A2E"  // Dark blue
         ],
         diverging: [
-          "#FF5252", "#FF8A8A", "#FFBDBD", "#FFFFFF", 
-          "#A5F3FC", "#22D3EE", "#0891B2"
+          "#E03E3E", // Red (matched to status.error)
+          "#F76D45", // Light red/orange
+          "#FFBCB8", // Very light red
+          "#FFFFFF", // White
+          "#B8DDFF", // Light blue
+          "#5592E0", // Blue
+          "#4280FF"  // Dark blue (matched to status.info)
         ],
-        accent: ["#FF6347", "#0AB68B", "#FDBE3B", "#4CC2FF"]
+        accent: [
+          "#5E4BD0", // Primary purple
+          "#00B0C8", // Teal
+          "#F76D45", // Orange
+          "#FFBC3D"  // Gold
+        ]
       }
     }
   },
   {
     title: "Indigo Innovator",
     colors: {
-      primary: "#4F46E5",
-      secondary: "#06B6D4",
-      tertiary: "#A855F7",
+      primary: "#4038C4", // Deeper indigo for better contrast
+      secondary: "#0099B8", // More accessible teal
+      tertiary: "#834AD7", // Complementary purple
       background: {
         main: "#F8FAFC",
         light: "#FFFFFF",
@@ -146,83 +162,115 @@ export const palettes: ExtendedColorPalette[] = [
         hover: "#EEF2FF"
       },
       text: {
-        primary: "#0F172A",
-        secondary: "#334155",
-        muted: "#64748B"
+        primary: "#0A1023", // Slightly darker for better contrast
+        secondary: "#28334D", // Improved contrast
+        muted: "#506078" // More readable muted text
       },
       status: {
-        success: "#10B981",
-        error: "#EF4444",
-        warning: "#F59E0B",
-        info: "#0EA5E9"
+        success: "#10B981", // Cool-toned green that fits the indigo palette
+        error: "#EF4444", // Warm red that contrasts nicely with the cool indigo
+        warning: "#F59E0B", // Rich amber that works with the palette
+        info: "#3B82F6" // Vibrant blue that aligns with the indigo theme
       },
-      border: "#E2E8F0",
-      shadow: "rgba(79, 70, 229, 0.12)",
+      border: "#D2DBE9", // Slightly stronger for better definition
+      shadow: "rgba(64, 56, 196, 0.13)",
       graph: {
         sequential: [
-          "#FFF4E0", "#FFE4B3", "#FFD586", "#FFC559", 
-          "#FFB62D", "#FFA700", "#D68E00", "#AD7400"
+          "#F0F7FF", "#D6E8FF", "#B3D4FF", "#8FC0FF", 
+          "#6BACFF", "#4889F8", "#2556D7", "#0233B6"
         ],
         categorical: [
-          "#FF7043", "#26C6DA", "#FFAB00", "#5C7CFA", 
-          "#FF4081", "#2DCE89", "#FFCA28", "#42A5F5"
+          "#4038C4", // Primary indigo
+          "#0099B8", // Secondary teal
+          "#F06A3F", // Orange
+          "#FFAA22", // Gold
+          "#10B981", // Green (matched to status.success)
+          "#834AD7", // Tertiary purple
+          "#506078", // Gray
+          "#0A1023"  // Dark blue
         ],
         diverging: [
-          "#FF4D4D", "#FF8080", "#FFB2B2", "#F9FAFB", 
-          "#CFFAFE", "#67E8F9", "#06B6D4"
+          "#EF4444", // Red (matched to status.error)
+          "#F06A3F", // Orange
+          "#FFB892", // Light peach
+          "#FFFFFF", // White
+          "#B3D4FF", // Light blue
+          "#4889F8", // Blue
+          "#3B82F6"  // Deep blue (matched to status.info)
         ],
-        accent: ["#FF7043", "#26C6DA", "#FFAB00", "#5C7CFA"]
+        accent: [
+          "#4038C4", // Primary indigo
+          "#0099B8", // Teal
+          "#F06A3F", // Orange
+          "#FFAA22"  // Gold
+        ]
       }
     }
   },
   {
     title: "Cobalt Disruptor",
     colors: {
-      primary: "#4338CA",
-      secondary: "#06B6D4",
-      tertiary: "#8B5CF6",
+      primary: "#3830B0", // Deeper cobalt for better contrast
+      secondary: "#0595AF", // More accessible teal
+      tertiary: "#7849D7", // Improved tertiary purple
       background: {
         main: "#F5F7FF",
         light: "#FFFFFF",
         card: "#FFFFFF",
-        hover: "#EEF2FF"
+        hover: "#ECF0FF"
       },
       text: {
-        primary: "#111827",
-        secondary: "#374151",
-        muted: "#6B7280"
+        primary: "#0C1220", // Darker for better contrast
+        secondary: "#293548", // Better contrast
+        muted: "#556070" // More readable
       },
       status: {
-        success: "#059669",
-        error: "#DC2626",
-        warning: "#D97706",
-        info: "#2563EB"
+        success: "#059669", // Deep teal-green that complements the cobalt theme
+        error: "#DC2626", // Strong red that stands out against the cobalt palette
+        warning: "#D97706", // Deep amber that pairs with the cooler cobalt palette
+        info: "#2563EB" // Rich blue that works with the cobalt theme
       },
-      border: "#DDD6FE",
-      shadow: "rgba(67, 56, 202, 0.12)",
+      border: "#CCD4E5", // Slightly stronger for better definition
+      shadow: "rgba(56, 48, 176, 0.14)",
       graph: {
         sequential: [
-          "#FFF3E0", "#FFE0B2", "#FFCC80", "#FFB74D", 
-          "#FFA726", "#FF9800", "#F57C00", "#EF6C00"
+          "#EDF7FF", "#D0E6FF", "#A7D3FF", "#7DC0FF", 
+          "#54ADFF", "#2A99FF", "#0081F1", "#0064C7"
         ],
         categorical: [
-          "#F87171", "#4DD0E1", "#FFC107", "#7083F7", 
-          "#F875AA", "#0DCAF0", "#FF9800", "#38B6FF"
+          "#3830B0", // Primary cobalt
+          "#0595AF", // Secondary teal
+          "#E15832", // Orange
+          "#E8A716", // Gold
+          "#059669", // Green (matched to status.success)
+          "#7849D7", // Purple
+          "#556070", // Gray
+          "#0C1220"  // Near black
         ],
         diverging: [
-          "#F87171", "#FECACA", "#FEE2E2", "#F8FAFC", 
-          "#DBEAFE", "#93C5FD", "#3B82F6"
+          "#DC2626", // Red (matched to status.error)
+          "#E15832", // Orange
+          "#F9BCA9", // Light peach
+          "#FFFFFF", // White
+          "#A7D3FF", // Light blue
+          "#2A99FF", // Mid blue
+          "#2563EB"  // Dark blue (matched to status.info)
         ],
-        accent: ["#F87171", "#4DD0E1", "#FFC107", "#7083F7"]
+        accent: [
+          "#3830B0", // Primary cobalt
+          "#0595AF", // Teal
+          "#E15832", // Orange
+          "#E8A716"  // Gold
+        ]
       }
     }
   },
   {
     title: "Blurple Bold",
     colors: {
-      primary: "#635BFF",
-      secondary: "#00B8D9",
-      tertiary: "#9F7AEA",
+      primary: "#5546E8", // Deeper blurple for better contrast
+      secondary: "#0099BF", // More accessible teal
+      tertiary: "#8E67D8", // Improved purple tertiary
       background: {
         main: "#F6F8FD",
         light: "#FFFFFF",
@@ -230,33 +278,49 @@ export const palettes: ExtendedColorPalette[] = [
         hover: "#EEF1FF"
       },
       text: {
-        primary: "#1A1B3C",
-        secondary: "#4A4B6A",
-        muted: "#717190"
+        primary: "#151632", // Darker for better contrast
+        secondary: "#35375C", // Better contrast
+        muted: "#5C5D78" // More readable
       },
       status: {
-        success: "#36B37E",
-        error: "#E5484D",
-        warning: "#FFAB00",
-        info: "#4C9AFF"
+        success: "#22C55E", // Vibrant green that pops against the blurple theme
+        error: "#F43F5E", // Bright pink-red that complements the blurple palette
+        warning: "#FBBF24", // Bright gold that works well with the blurple scheme
+        info: "#38BDF8" // Sky blue that differentiates from the primary blurple
       },
-      border: "#E6E8F0",
-      shadow: "rgba(99, 91, 255, 0.12)",
+      border: "#D8DEEF", // Slightly stronger for better definition
+      shadow: "rgba(85, 70, 232, 0.12)",
       graph: {
         sequential: [
-          "#FFF7EB", "#FFE9C4", "#FFDB9D", "#FFCD76", 
-          "#FFBF4F", "#FFB129", "#FFA302", "#EB9400"
+          "#EDF6FF", "#D1E4FF", "#B5D2FF", "#99C0FF", 
+          "#7DADFF", "#619BFF", "#4589FF", "#2977FF"
         ],
         categorical: [
-          "#FF5A5A", "#2ECBD2", "#FF9F43", "#687EFF", 
-          "#FF66AA", "#33D69F", "#FFD166", "#48B0FF"
+          "#5546E8", // Primary blurple
+          "#0099BF", // Secondary teal
+          "#E75542", // Orange/salmon
+          "#F0A700", // Gold
+          "#22C55E", // Green (matched to status.success)
+          "#8E67D8", // Purple
+          "#5C5D78", // Gray
+          "#151632"  // Dark blue
         ],
         diverging: [
-          "#FF5A5A", "#FF9C9C", "#FFCECE", "#F8FAFC", 
-          "#B4E4FD", "#5BC0FA", "#00A0F7"
+          "#F43F5E", // Red (matched to status.error)
+          "#E75542", // Salmon
+          "#F9B2A9", // Light salmon
+          "#FFFFFF", // White
+          "#B5D2FF", // Light blue
+          "#619BFF", // Mid blue
+          "#38BDF8"  // Deep blue (matched to status.info)
         ],
-        accent: ["#FF5A5A", "#2ECBD2", "#FF9F43", "#687EFF"]
+        accent: [
+          "#5546E8", // Primary blurple
+          "#0099BF", // Teal
+          "#E75542", // Salmon
+          "#F0A700"  // Gold
+        ]
       }
     }
   }
-]; 
+];

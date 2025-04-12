@@ -88,22 +88,30 @@ const ComplexWebsiteSlide = ({ selectedPalette }: ComplexWebsiteSlideProps) => {
     { name: 'Presentation', value: 5 }
   ];
 
-  // Helper function to get graph colors with fallback
-  const getGraphColor = (type: 'categorical' | 'accent', index: number, fallback: string) => {
-    return graph?.[type]?.[index] || fallback;
-  };
+  // Use the palette's defined colors
+  const COLORS = [
+    primary,
+    secondary,
+    tertiary,
+    status.success,
+    status.warning,
+    status.error,
+    status.info,
+    ...(graph?.categorical || []),
+    ...(graph?.accent || [])
+  ];
 
   // Helper function to get status color
   const getStatusColor = (status: ProjectStatus) => {
     switch (status) {
       case 'active':
-        return getGraphColor('categorical', 0, primary);
+        return COLORS[3]; // status.success
       case 'completed':
-        return getGraphColor('categorical', 1, secondary);
+        return COLORS[3]; // status.success
       case 'delayed':
-        return getGraphColor('categorical', 2, tertiary);
+        return COLORS[5]; // status.error
       case 'planned':
-        return getGraphColor('categorical', 3, primary);
+        return COLORS[6]; // status.info
       default:
         return primary;
     }
@@ -257,8 +265,8 @@ const ComplexWebsiteSlide = ({ selectedPalette }: ComplexWebsiteSlideProps) => {
                       <td className="p-3" style={{ color: text.primary }}>{project.name}</td>
                       <td className="p-3">
                         <span className="px-2 py-1 rounded-full text-xs" style={{ 
-                          backgroundColor: (project.status === 'active' || project.status === 'completed' ? status.success : status.error) + '20',
-                          color: project.status === 'active' || project.status === 'completed' ? status.success : status.error
+                          backgroundColor: getStatusColor(project.status) + '20',
+                          color: getStatusColor(project.status)
                         }}>
                           {project.status}
                         </span>
@@ -365,7 +373,7 @@ const ComplexWebsiteSlide = ({ selectedPalette }: ComplexWebsiteSlideProps) => {
                         dataKey="value"
                       >
                         {learningOutcomesData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={getGraphColor('categorical', index, primary)} />
+                          <Cell key={`cell-${index}`} fill={COLORS[7 + (index % 8)]} />
                         ))}
                       </Pie>
                       <Tooltip
@@ -400,7 +408,7 @@ const ComplexWebsiteSlide = ({ selectedPalette }: ComplexWebsiteSlideProps) => {
                         dataKey="value"
                       >
                         {assessmentTypesData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={getGraphColor('categorical', index, primary)} />
+                          <Cell key={`cell-${index}`} fill={COLORS[7 + ((index + 4) % 8)]} />
                         ))}
                       </Pie>
                       <Tooltip
