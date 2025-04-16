@@ -34,58 +34,58 @@ export interface ExtendedColorPalette {
 
 export const palettes: ExtendedColorPalette[] = [
   {
-    title: "Taskbase",
-    colors: {
-      primary: "#6265C9",
-      secondary: "#A5F4D9",
-      tertiary: "#8182D8",
-      background: {
-        main: "#F0F1FB",
-        light: "#FFFFFF",
-        card: "#FFFFFF",
-        hover: "#E6E7FA"
+    "title": "Taskbase",
+    "colors": {
+      "primary": "#6265C9",
+      "secondary": "#A5F4D9",
+      "tertiary": "#8182D8",
+      "background": {
+        "main": "#F3F4FB",
+        "light": "#FFFFFF",
+        "card": "#FFFFFF",
+        "hover": "#F5F5F5"
       },
-      text: {
-        primary: "#1A1A2E",
-        secondary: "#4B4B66",
-        muted: "#6E7191"
+      "text": {
+        "primary": "#1A1A2E",
+        "secondary": "#4B4B66",
+        "muted": "#6E7191"
       },
-      status: {
-        success: "#43A047",
-        error: "#C62828",
-        warning: "#FFB84D",
-        info: "#3B82F6"
+      "status": {
+        "success": "#94B61E",
+        "error": "#E45A47",
+        "warning": "#F39B3D",
+        "info": "#3B82F6"
       },
-      border: "#E2E8F0",
-      shadow: "rgba(98, 101, 201, 0.12)",
-      graph: {
-        sequential: [
-          "#E6E7FF", "#C4C6FF", "#A3A6FF", "#8286FF", 
-          "#6166FF", "#4046FF", "#1F26FF", "#0007FF"
+      "border": "#E2E8F0",
+      "shadow": "rgba(98, 101, 201, 0.12)",
+      "graph": {
+        "sequential": [
+          "#E8EFD1", "#D9E4B2", "#C9D993", "#B9CE74", 
+          "#A9C356", "#9AB737", "#8AAC19", "#7A9F00"
         ],
-        categorical: [
-          "#0007FF", // Blue
-          "#00DBA8", // Mint
-          "#FF0A0A", // Red
+        "categorical": [
+          "#90A637", // Primary green
+          "#5BC0EB", // Blue
+          "#C83E73", // Pink/Red
           "#FFB800", // Gold
-          "#00B828", // Green
-          "#4B5CCC", // Slate blue
+          "#7E4AC9", // Purple
+          "#F26430", // Orange
           "#71757A", // Gray
-          "#000000"  // Black
+          "#2D2D2D"  // Dark gray
         ],
-        diverging: [
+        "diverging": [
           "#C62828", // Deep red (error)
           "#D15353", // Medium red
           "#E8A9A9", // Light red
           "#FFB84D", // Yellow (warning)
-          "#98CB9A", // Light green
-          "#5FAE63", // Medium green
-          "#43A047"  // Deep green (success)
+          "#D9E4B2", // Light green
+          "#B9CE74", // Medium green
+          "#90A637"  // Primary green (success)
         ],
-        accent: [
-          "#0007FF", // Blue
-          "#00DBA8", // Mint
-          "#FF0A0A", // Red
+        "accent": [
+          "#90A637", // Primary green
+          "#5BC0EB", // Blue
+          "#C83E73", // Pink/Red
           "#FFB800"  // Gold
         ]
       }

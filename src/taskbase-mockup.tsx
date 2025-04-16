@@ -73,20 +73,34 @@ const TaskbaseMockup = () => {
         {/* Main Content */}
         <div className="flex-1 p-6">
           {/* Slide Navigation */}
-          <div className="mb-4 flex space-x-2">
-            {['Cover', 'Growth Metrics', 'Q&A', 'Learning Analytics', 'Complex Website', 'Color System', 'Taskbase'].map((title, index) => (
-              <button
-                key={index}
-                className="px-4 py-2 rounded transition-colors text-sm"
-                style={{
-                  backgroundColor: currentSlide === index ? primary : background.hover,
-                  color: currentSlide === index ? 'white' : text.primary,
-                }}
-                onClick={() => setCurrentSlide(index)}
-              >
-                {title}
-              </button>
-            ))}
+          <div className="mb-4 flex justify-between items-center">
+            <div className="flex space-x-2">
+              {['Cover', 'Growth Metrics', 'Q&A', 'Learning Analytics', 'Complex Website', 'Color System', 'Taskbase'].map((title, index) => (
+                <button
+                  key={index}
+                  className="px-4 py-2 rounded transition-colors text-sm"
+                  style={{
+                    backgroundColor: currentSlide === index ? primary : background.hover,
+                    color: currentSlide === index ? 'white' : text.primary,
+                  }}
+                  onClick={() => setCurrentSlide(index)}
+                >
+                  {title}
+                </button>
+              ))}
+            </div>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScxdXVmryavhUTPIhEXR3690uR49JMCG9ytrI33PswpovA_5w/viewform?usp=header"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded transition-colors text-sm font-medium"
+              style={{
+                backgroundColor: 'black',
+                color: 'white',
+              }}
+            >
+              Vote on your favorite!
+            </a>
           </div>
 
           {/* Slide Content */}
